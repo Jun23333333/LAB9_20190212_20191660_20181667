@@ -1,5 +1,7 @@
-
+<%@ page import="Beans.HumanoBean" %>
+<%@ page import="java.util.ArrayList" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<jsp:useBean id="listaHumano" scope="request" type="java.util.ArrayList<Beans.HumanoBean>" />
 <!doctype html>
 <html lang="en">
 <head>
@@ -25,6 +27,28 @@
     </header>
 </div>
 <div class="b-example-divider"></div>
+<div class="table-responsive">
+    <table class="table table-striped table-sm">
+        <thead>
+        <tr>
+            <th scope="col">Numero de Identificacion</th><th scope="col">Nombre y Apellido</th>
+            <th scope="col">Sexo</th><th scope="col">Estado</th>
+        </tr>
+        </thead>
+        <%for (HumanoBean humano : listaHumano ) {%>
+        <tr>
+            </td><td><%=humano.getNumero_identi()%></td><td><%=humano.getNombre()%> <%=humano.getApellido()%></td>
+            <td><%=humano.getSexo()%></td><td><%=humano.getEstado()%></td>
+        </tr>
+        <% }%>
+    </table>
+    <a href="<%=request.getContextPath()%>/ZombieServlet">
+        <button type="button" class="btn btn-Warning">Zombies</button>
+    </a>
+    <a href="<%=request.getContextPath()%>/SupervivienteServlet">
+        <button type="button" class="btn btn-Info">Supervivientes</button>
+    </a>
+</div>
 
 
 
