@@ -1,5 +1,8 @@
-
+<%@ page import="Beans.VirusBean" %>
+<%@ page import="java.util.ArrayList" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<jsp:useBean id="listaVirus" scope="request" type="java.util.ArrayList<Beans.VirusBean>" />
+<jsp:useBean id="Virus_activos" scope="request" type="Servlets.VirusServlet" />
 <!doctype html>
 <html lang="en">
 <head>
@@ -25,7 +28,36 @@
     </header>
 </div>
 <div class="b-example-divider"></div>
-
+<h3>Virus activos: <%=Virus_activos%></h3>
+<div class="table-responsive" >
+    <table class="table table-striped table-sm">
+        <thead>
+        <tr>
+            <th></th><th></th><th></th><th></th><th></th>
+            <th scope="col">ID</th>
+            <th scope="col">Virus</th>
+            <th scope="col">ID Variante</th>
+            <th scope="col">Variante</th>
+            <th SCOPE="col">Casos encontrados</th>
+            <th></th><th></th><th></th><th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <% for (VirusBean virus : listaVirus ) {%>
+        <tr>
+            <th></th><th></th><th></th><th></th><th></th>
+            <td><%=virus.getId()%></td>
+            <td><%=virus.getVirus()%></td>
+            <td><%=virus.getVariante().getId()%></td>
+            <td><%=virus.getVariante().getNombre()%></td>
+            <td><%=virus.getCaso()%></td>
+            <th></th><th></th><th></th><th></th>
+        </tr>
+        <%
+            } %>
+        </tbody>
+    </table>
+</div>
 
 
 
