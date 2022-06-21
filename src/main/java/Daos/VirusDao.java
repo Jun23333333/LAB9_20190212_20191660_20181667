@@ -34,34 +34,30 @@ public class VirusDao extends BaseDao{
         return viruss;
     }
 
-    public VirusBean casosEncontrados(int id){
-        VirusBean virus = null;
+    public ArrayList<VirusBean> casosEncontrados(){
+        ArrayList<VirusBean> casos = new ArrayList<>();
         String sql = "select count(zo.idHumano), va.idVariante, vi.idvirus, va.nombre from humano zo\n" +
                 "inner join variante va on zo.idVariante = va.idVariante\n" +
                 "inner join virus vi on vi.idVirus = va.idVirus \n" +
-                "where va.idVariante = ?\n" +
                 "group by zo.idVariante";
         try (Connection conn = this.getConnection();
-             PreparedStatement pstmt = conn.prepareStatement(sql);) {
-            pstmt.setInt(1, id);
-            try (ResultSet resultSet = pstmt.executeQuery()) {
-                if (resultSet.next()) {
-                    virus = new VirusBean();
+             Statement stmt = conn.createStatement();
+             ResultSet resultSet = stmt.executeQuery(sql)) {
+            while (resultSet.next()) {
+                    VirusBean virus = new VirusBean();
                     virus.setId(resultSet.getInt(3));
                     virus.setCaso(resultSet.getInt(1));
                     VarianteBean variante = new VarianteBean();
                     variante.setId(resultSet.getInt(2));
                     variante.setNombre(resultSet.getString(4));
                     virus.setVariante(variante);
+                    casos.add(virus);
                 }
-            }
-
-
-        } catch (SQLException e) {
+        }catch (SQLException e) {
             System.out.println("Hubo un error en la conexión!");
             e.printStackTrace();
         }
-        return virus;
+        return casos;
     }
 
 

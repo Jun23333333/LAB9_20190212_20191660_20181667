@@ -1,11 +1,16 @@
-
+<%@ page import="Beans.VirusBean" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<jsp:useBean id="listaVirus" scope="request" type="java.util.ArrayList<Beans.VirusBean>"/>
+<jsp:useBean id="casos" scope="request" type="java.util.ArrayList<Beans.VirusBean>"/>
+<jsp:useBean id="activos" scope="request" type="java.lang.Integer"/>
 <!doctype html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
+    <title>Virus</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+
 </head>
 <body>
 <div class="container">
@@ -25,6 +30,59 @@
     </header>
 </div>
 <div class="b-example-divider"></div>
+
+<div class="table-responsive">
+    <table class="table table-striped table-sm">
+        <thead>
+        <tr>
+            <th scope="col">ID Virus</th><th scope="col">Virus</th>
+            <th scope="col">ID Variante</th><th scope="col">Variante</th>
+            <th scope="col">Eliminar</th>
+        </tr>
+        </thead>
+        <%for (VirusBean virus : listaVirus) {%>
+        <tr>
+
+            <td><%=virus.getId()%></td>
+            <td><%=virus.getVirus()%></td>
+            <td><%=virus.getVariante().getId()%></td>
+            <td><%=virus.getVariante().getNombre()%></td>
+            <td><a href="<%=request.getContextPath()%>/VirusServlet?action=eliminar&id=<%=virus.getVariante().getId()%>&nombre=<%=virus.getVariante().getNombre()%>">
+                <button type="button" class="btn btn-danger">Eliminar</button>
+            </a></td>
+        </tr>
+        <% }%>
+    </table>
+    <table class="table table-striped table-sm">
+        <thead>
+        <tr>
+
+            <th scope="col">Variante</th><th scope="col">Casos Encontrados</th>
+        </tr>
+        </thead>
+        <%for (VirusBean virus : casos) {%>
+        <tr>
+            <td><%=virus.getVariante().getNombre()%></td>
+            <td><%=virus.getCaso()%></td>
+        </tr>
+        <%}%>
+    </table>
+    <table class="table table-striped table-sm">
+        <thead>
+        <tr>
+            <th scope="col">Virus activos</th><th scope="col"><%=activos%></th>
+
+        </tr>
+        </thead>
+
+
+    </table>
+    <a href="<%=request.getContextPath()%>/VirusServlet?action=agregar">
+        <button type="button" class="btn btn-warning">Agregar Virus</button>
+    </a>
+
+
+</div>
 
 
 
