@@ -4,6 +4,7 @@ public class SupervivienteBean {
     private int numero_identi;
     private String nombre;
     private String apellido;
+    private String estado;
     private double peso;
     private double fuerza;
     private String pareja;
@@ -72,5 +73,13 @@ public class SupervivienteBean {
 
     public void setSexo(String sexo) {
         this.sexo = sexo;
+    }
+
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
     }
 }
