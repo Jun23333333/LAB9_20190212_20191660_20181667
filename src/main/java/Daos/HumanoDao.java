@@ -1,7 +1,38 @@
 package Daos;
 
-public class HumanoDao extends BaseDao{
-    public void listar(){
+import Beans.HumanoBean;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+
+public class HumanoDao extends BaseDao{
+    public ArrayList<HumanoBean> listaHumano(){
+
+        String rol="Humano";
+        ArrayList<HumanoBean> listaHumano = new ArrayList<>();
+        String sql = " blabla";
+
+        try (Connection conn = this.getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+            try (ResultSet resultSet = pstmt.executeQuery()) {
+                while (resultSet.next()) {
+                    HumanoBean p = new HumanoBean();
+                    p.setNumero_identi(resultSet.getInt(1));
+                    p.setNombre(resultSet.getString(3));
+                    p.setApellido(resultSet.getString(2));
+                    p.setSexo(resultSet.getString(4));
+                    p.setEstado(resultSet.getString(5));
+                    listaHumano.add(p);
+                }
+            }
+        } catch (SQLException e) {
+            System.out.println("Hubo un error en la conexión!");
+            e.printStackTrace();
+        }
+        return listaHumano;
     }
 }

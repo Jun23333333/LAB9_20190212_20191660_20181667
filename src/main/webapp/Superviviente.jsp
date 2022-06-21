@@ -1,5 +1,7 @@
-
+<%@ page import="Beans.SupervivienteBean" %>
+<%@ page import="java.util.ArrayList" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<jsp:useBean id="listaSuperviviente" scope="request" type="java.util.ArrayList<Beans.SupervivienteBean>" />
 <!doctype html>
 <html lang="en">
 <head>
@@ -26,7 +28,31 @@
 </div>
 <div class="b-example-divider"></div>
 
-
+<div class="table-responsive">
+    <table class="table table-striped table-sm">
+        <thead>
+        <tr>
+            <th scope="col">Peso</th><th scope="col">Fuerza</th>
+            <th scope="col">Pareja</th><th scope="col">Peso Cargado</th>
+        </tr>
+        </thead>
+        <%for (SupervivienteBean superviviente : listaSuperviviente) {%>
+        <tr>
+            </td>
+            <td><%=superviviente.getPeso()%> KG</td>
+            <td><%=superviviente.getFuerza()%> N</td>
+            <td><%=superviviente.getPareja()%></td>
+            <td><%=superviviente.getCarga()%> KG</td>
+        </tr>
+        <% }%>
+    </table>
+    <a href="<%=request.getContextPath()%>/SupervivienteServlet?a=agregar">
+        <button type="button" class="btn btn-Warning">Agregar Superviviente</button>
+    </a>
+    <a href="<%=request.getContextPath()%>/SupervivienteServlet">
+        <button type="button" class="btn btn-Info">Supervivientes</button>
+    </a>
+</div>
 
 
 <script src="/docs/5.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>

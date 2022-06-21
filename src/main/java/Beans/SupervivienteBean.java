@@ -8,6 +8,7 @@ public class SupervivienteBean {
     private double fuerza;
     private String pareja;
     private double carga;
+    private String sexo;
 
     public int getNumero_identi() {
         return numero_identi;
@@ -63,5 +64,13 @@ public class SupervivienteBean {
 
     public void setCarga(double carga) {
         this.carga = carga;
+    }
+
+    public String getSexo() {
+        return sexo;
+    }
+
+    public void setSexo(String sexo) {
+        this.sexo = sexo;
     }
 }
