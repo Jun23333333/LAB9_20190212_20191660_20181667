@@ -20,7 +20,6 @@ public class HumanoServlet extends HttpServlet {
             case "listar":
                 ArrayList<HumanoBean> lista = humanoDao.listarHumano();
                 request.setAttribute("listaHumano",lista);
-                System.out.println(lista);
                 view = request.getRequestDispatcher("Humano.jsp");
 
                 view.forward(request,response);

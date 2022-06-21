@@ -17,7 +17,7 @@ public class SupervivienteServlet extends HttpServlet {
         int idOperador = 0;
         switch (action){
             case "listar":
-                request.setAttribute("listaOperadores",supervivienteDao.listar());
+                request.setAttribute("listaSuperviviente",supervivienteDao.listar());
                 RequestDispatcher requestDispatcher = request.getRequestDispatcher("Superviviente.jsp");
                 requestDispatcher.forward(request,response);
                 break;

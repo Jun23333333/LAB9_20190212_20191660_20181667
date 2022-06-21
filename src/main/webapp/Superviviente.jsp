@@ -32,17 +32,28 @@
     <table class="table table-striped table-sm">
         <thead>
         <tr>
-            <th scope="col">Peso</th><th scope="col">Fuerza</th>
-            <th scope="col">Pareja</th><th scope="col">Peso Cargado</th>
+            <th></th><th></th><th></th><th></th><th></th>
+            <th scope="col">Numero de Identificacion</th>
+            <th scope="col">Nombre y Apellido</th>
+            <th scope="col">Sexo</th>
+            <th scope="col">Peso</th>
+            <th scope="col">Fuerza</th>
+            <th scope="col">Pareja</th>
+            <th scope="col">Peso Cargado</th>
         </tr>
         </thead>
         <%for (SupervivienteBean superviviente : listaSuperviviente) {%>
         <tr>
             </td>
-            <td><%=superviviente.getPeso()%> KG</td>
+            <th></th><th></th><th></th><th></th><th></th>
+            <td><%=superviviente.getNumero_identi()%> </td>
+            <td><%=superviviente.getNombre()%> <%=superviviente.getApellido()%> </td>
+            <td><%=superviviente.getSexo()%> </td>
+            <td><%=superviviente.getPeso()%> Kg</td>
             <td><%=superviviente.getFuerza()%> N</td>
-            <td><%=superviviente.getPareja()%></td>
-            <td><%=superviviente.getCarga()%> KG</td>
+            <td><%=superviviente.getParejaNombre()== null ? "" : superviviente.getParejaNombre()%>
+                <%=superviviente.getParejaApellido() == null ? "Sin Pareja" : superviviente.getParejaApellido() %></td>
+            <td><%=superviviente.getCarga()%> Kg</td>
         </tr>
         <% }%>
     </table>

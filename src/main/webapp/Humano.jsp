@@ -53,10 +53,10 @@
                 </tbody>
             </table>
             <a href="<%=request.getContextPath()%>/ZombieServlet">
-                <button type="button" class="btn btn-Warning">Zombies</button>
+                <button type="button" class="btn btn-Warning">Ver lista de Zombies</button>
             </a>
             <a href="<%=request.getContextPath()%>/SupervivienteServlet">
-                <button type="button" class="btn btn-Info">Supervivientes</button>
+                <button type="button" class="btn btn-Info">Ver lista de Supervivientes</button>
             </a>
         </div>
 
