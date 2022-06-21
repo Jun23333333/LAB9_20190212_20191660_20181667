@@ -38,6 +38,8 @@ public class SupervivienteServlet extends HttpServlet {
             case "crear":
                 String nombre = request.getParameter("nombre");
                 String apellido = request.getParameter("apellido");
+                String sexo = request.getParameter("sexo");
+                String estado = request.getParameter("estado");
                 int numero = Integer.parseInt(request.getParameter("NI"));
                 double peso = Double.parseDouble(request.getParameter("peso"));
                 double fuerza = Double.parseDouble(request.getParameter("fuerza"));
@@ -46,7 +48,8 @@ public class SupervivienteServlet extends HttpServlet {
                 if(num_pareja != "alone"){
                     id_pareja = Integer.parseInt(num_pareja);
                 }
-                supervivienteDao.crear(nombre, apellido, numero, peso, fuerza, id_pareja);
+                //(idHumano,nombre,apellido,estado,sexo,peso,fuerza,pareja)
+                supervivienteDao.crear(numero,nombre, apellido,estado,sexo, peso, fuerza, id_pareja);
                 response.sendRedirect(request.getContextPath()+"/Superviviente.jsp");
                 break;
         }
