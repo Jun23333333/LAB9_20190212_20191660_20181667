@@ -13,7 +13,7 @@ public class HumanoDao extends BaseDao{
 
         String rol="Humano";
         ArrayList<HumanoBean> listaHumano = new ArrayList<>();
-        String sql = " blabla";
+        String sql = " select idHumano, nombre, apellido, sexo, estado from humano";
 
         try (Connection conn = this.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
