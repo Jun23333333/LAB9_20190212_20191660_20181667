@@ -12,7 +12,10 @@ public class SupervivienteDao extends BaseDao{
     public ArrayList<SupervivienteBean> listar(){
 
         ArrayList<SupervivienteBean> listaSuper = new ArrayList<>();
-        String sql = " blabla";
+        String sql = " select h.idHumano, h.nombre, h.apellido, h.sexo, h.peso,h.fuerza, concat(p.nombre,\" \",p.apellido) as pareja \n" +
+                "from humano h\n" +
+                "left join humano p on h.idPareja=p.idHumano\n" +
+                "where h.estado ='superviviente';";
 
         try (Connection conn = this.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
