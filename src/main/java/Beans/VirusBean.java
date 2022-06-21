@@ -7,6 +7,7 @@ public class VirusBean {
     private String variante;
     private String caso;
 
+
     public int getId() {
         return id;
     }
