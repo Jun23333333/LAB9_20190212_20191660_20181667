@@ -3,10 +3,25 @@ package Beans;
 public class VirusBean {
     private int id;
     private String virus;
-    private int id_variante;
-    private String variante;
-    private String caso;
+    private int caso;
+    private VarianteBean variante;
+    private String activo;
 
+    public VarianteBean getVariante() {
+        return variante;
+    }
+
+    public void setVariante(VarianteBean variante) {
+        this.variante = variante;
+    }
+
+    public String getActivo() {
+        return activo;
+    }
+
+    public void setActivo(String activo) {
+        this.activo = activo;
+    }
 
     public int getId() {
         return id;
@@ -24,27 +39,11 @@ public class VirusBean {
         this.virus = virus;
     }
 
-    public int getId_variante() {
-        return id_variante;
-    }
-
-    public void setId_variante(int id_variante) {
-        this.id_variante = id_variante;
-    }
-
-    public String getVariante() {
-        return variante;
-    }
-
-    public void setVariante(String variante) {
-        this.variante = variante;
-    }
-
-    public String getCaso() {
+    public int getCaso() {
         return caso;
     }
 
-    public void setCaso(String caso) {
+    public void setCaso(int caso) {
         this.caso = caso;
     }
 }

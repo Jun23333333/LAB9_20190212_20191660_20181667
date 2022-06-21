@@ -149,8 +149,8 @@ public class ZombiesDao extends BaseDao{
     }
 
     public void agregarZombie(String id, int tiempo, int idV, String tipo, String sexo){
-        String sql = "insert into Humano (idHumano,estado, tiempoInfectado, idVariante, tipo, numeroVictimas, sexo) values (?,'zombie',?,?,?,0,?)";
         if(!existeZombie(id)){
+            String sql = "insert into Humano (idHumano,estado, tiempoInfectado, idVariante, tipo, numeroVictimas, sexo) values (?,'zombie',?,?,?,0,?)";
             try (Connection conn = this.getConnection();
                  PreparedStatement pstmt = conn.prepareStatement(sql)) {
                 pstmt.setString(1,id);
