@@ -24,7 +24,7 @@ public class SupervivienteDao extends BaseDao{
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
 
             try (ResultSet resultSet = pstmt.executeQuery()) {
-                while (resultSet.next()) {
+                if (resultSet.next()) {
                     SupervivienteBean p = new SupervivienteBean();
                     p.setNumero_identi(resultSet.getInt(1));
                     p.setNombre(resultSet.getString(3));

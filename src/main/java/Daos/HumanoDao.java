@@ -11,7 +11,7 @@ import java.util.ArrayList;
 public class HumanoDao extends BaseDao{
     public ArrayList<HumanoBean> listaHumano(){
 
-        String rol="Humano";
+        //String rol="Humano";
         ArrayList<HumanoBean> listaHumano = new ArrayList<>();
         String sql = " select idHumano, nombre, apellido, sexo, estado from humano";
 
@@ -19,11 +19,11 @@ public class HumanoDao extends BaseDao{
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
 
             try (ResultSet resultSet = pstmt.executeQuery()) {
-                while (resultSet.next()) {
+                if (resultSet.next()) {
                     HumanoBean p = new HumanoBean();
                     p.setNumero_identi(resultSet.getInt(1));
-                    p.setNombre(resultSet.getString(3));
-                    p.setApellido(resultSet.getString(2));
+                    p.setNombre(resultSet.getString(2));
+                    p.setApellido(resultSet.getString(3));
                     p.setSexo(resultSet.getString(4));
                     p.setEstado(resultSet.getString(5));
                     listaHumano.add(p);
