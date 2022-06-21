@@ -12,10 +12,13 @@ public class SupervivienteDao extends BaseDao{
     public ArrayList<SupervivienteBean> listar(){
 
         ArrayList<SupervivienteBean> listaSuper = new ArrayList<>();
-        String sql = " select h.idHumano, h.nombre, h.apellido, h.sexo, h.peso,h.fuerza, concat(p.nombre,\" \",p.apellido) as pareja \n" +
+        String sql = "select h.idHumano, h.nombre, h.apellido, h.sexo, h.peso,h.fuerza, concat(p.nombre,\" \",p.apellido) as pareja,  truncate(sum(ob.masa),2) as pesocargado\n" +
                 "from humano h\n" +
                 "left join humano p on h.idPareja=p.idHumano\n" +
-                "where h.estado ='superviviente';";
+                "left join objetoporhumano oxh on h.idHumano= oxh.idHumano\n" +
+                "left join objeto ob on oxh.idObjeto= ob.idObjeto\n" +
+                "where h.estado ='superviviente'\n" +
+                "group by h.idHumano; ";
 
         try (Connection conn = this.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
@@ -31,6 +34,7 @@ public class SupervivienteDao extends BaseDao{
                     p.setFuerza(resultSet.getDouble(6));
                     p.setPareja(resultSet.getString(7));
                     //falta agregar el peso cargado que se calcula con el inventario
+                    p.setCarga(resultSet.getDouble(8));
                     listaSuper.add(p);
                 }
             }
