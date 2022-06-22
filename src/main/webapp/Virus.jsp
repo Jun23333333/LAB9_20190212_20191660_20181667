@@ -47,7 +47,7 @@
             <td><%=virus.getVirus()%></td>
             <td><%=virus.getVariante().getId()%></td>
             <td><%=virus.getVariante().getNombre()%></td>
-            <td><a href="<%=request.getContextPath()%>/VirusServlet?action=eliminar&id=<%=virus.getVariante().getId()%>&nombre=<%=virus.getVariante().getNombre()%>">
+            <td><a href="<%=request.getContextPath()%>/VirusServlet?action=eliminar&idVirus=<%=virus.getId()%>&idVariante=<%=virus.getVariante().getId()%>">
                 <button type="button" class="btn btn-danger">Eliminar</button>
             </a></td>
         </tr>

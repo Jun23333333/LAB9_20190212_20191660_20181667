@@ -102,12 +102,23 @@ public class VirusDao extends BaseDao{
         }
         return existe;
     }
-    public void anadirNuevaVariante(String virus){
+    public void anadirNuevaVariante(String virus,String variante){
         if(!existeVirus(virus)){
             String sql = "insert into virus (nombre, activo) values (?,'si')";
             try (Connection conn = this.getConnection();
                  PreparedStatement pstmt = conn.prepareStatement(sql)) {
                 pstmt.setString(1,virus);
+                pstmt.executeUpdate();
+            }
+
+            catch( SQLException e){
+                System.out.println("Hubo un error en la conexión!");
+                e.printStackTrace();
+            }
+            String sql1 = "insert into variante (nombre,idVirus) values (?,(select max(vi.idVirus) from virus vi))";
+            try (Connection conn = this.getConnection();
+            PreparedStatement pstmt = conn.prepareStatement(sql1)) {
+                pstmt.setString(1,variante);
                 pstmt.executeUpdate();
             }
 
@@ -137,12 +148,12 @@ public class VirusDao extends BaseDao{
         return existe;
     }
 
-    public void eliminarZombie(int id, String nombre){
-        String sql = "UPDATE humano SET estado = 'recuperado' where idVariante = ?";
+    public void eliminarZombie(int idVariante,  int idVirus){
+        String sql = "Delete from humano where idVariante = ?";
 
         try (Connection conn = this.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
-            pstmt.setInt(1,id);
+            pstmt.setInt(1,idVariante);
             pstmt.executeUpdate();
         }
 
@@ -150,10 +161,10 @@ public class VirusDao extends BaseDao{
             System.out.println("Hubo un error en la conexión!");
             e.printStackTrace();
         }
-        String sql1 = "UPDATE variante set idVariante = 0 where nombre = ?";
+        String sql1 = "DELETE FROM variante where idVariante = ?";
         try (Connection conn = this.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql1)) {
-            pstmt.setString(1, nombre);
+            pstmt.setInt(1, idVariante);
             pstmt.executeUpdate();
         }
 
@@ -161,11 +172,11 @@ public class VirusDao extends BaseDao{
             System.out.println("Hubo un error en la conexión!");
             e.printStackTrace();
         }
-        if(!varianteRestante(id)){
+        if(!varianteRestante(idVirus)){
             String sql2 = "update  virus set activo = 'no' where idVirus = ?";
             try (Connection conn = this.getConnection();
                  PreparedStatement pstmt = conn.prepareStatement(sql2)) {
-                pstmt.setInt(1, id);
+                pstmt.setInt(1, idVirus);
                 pstmt.executeUpdate();
             }
 

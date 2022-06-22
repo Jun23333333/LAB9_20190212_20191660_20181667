@@ -55,7 +55,7 @@
                                                placeholder="Ingrese virus"/>
                                     </div>
                                     <div class="form-outline mb-4">
-                                        <label class="form-label" for="variante">Virus</label>
+                                        <label class="form-label" for="variante">Variante</label>
                                         <input name="variante"
                                                type="text"
                                                id="variante"
