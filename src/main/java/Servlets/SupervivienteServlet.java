@@ -76,12 +76,15 @@ public class SupervivienteServlet extends HttpServlet {
             case "actualizar":
                 SupervivienteBean superviviente = new SupervivienteBean();
                 superviviente.setNombre(request.getParameter("nombre"));
-                superviviente.setSexo(request.getParameter("sexo"));
-                superviviente.setPeso(Double.parseDouble(request.getParameter("peso")));
-                superviviente.setFuerza(Double.parseDouble(request.getParameter("fuerza")));
-                superviviente.setIdPareja(request.getParameter("pareja"));
-                supervivienteDao.actualizarSuperviviente(superviviente);
 
+                superviviente.setPeso(Double.parseDouble(request.getParameter("peso")));
+
+                superviviente.setFuerza(Double.parseDouble(request.getParameter("fuerza")));
+
+                superviviente.setIdPareja(request.getParameter("pareja"));
+
+                superviviente.setNumero_identi(request.getParameter("numeroid"));
+                supervivienteDao.actualizarSuperviviente(superviviente);
                 response.sendRedirect("SupervivienteServlet?action=listar");
 
                 break;

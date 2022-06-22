@@ -81,25 +81,26 @@ public class SupervivienteDao extends BaseDao{
                 "left join humano p on h.idPareja=p.idHumano\n" +
                 "left join objetoporhumano oxh on h.idHumano= oxh.idHumano\n" +
                 "left join objeto ob on oxh.idObjeto= ob.idObjeto\n" +
-                "where h.estado ='superviviente' and h.idHumano = ?\n" +
-                "group by h.idHumano " ;
+                "where h.estado ='superviviente' and h.idHumano = ?\n";
 
         try (Connection conn = this.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql);) {
             pstmt.setString(1, numero_identi);
 
             try (ResultSet rs = pstmt.executeQuery();) {
-                p = new SupervivienteBean();
-                p.setNumero_identi(rs.getString(1));
-                p.setNombre(rs.getString(2));
-                p.setApellido(rs.getString(3));
-                p.setSexo(rs.getString(4));
-                p.setPeso(rs.getDouble(5));
-                p.setFuerza(rs.getDouble(6));
-                p.setParejaNombre(rs.getString(7));
-                p.setParejaApellido(rs.getString(8));
-                p.setIdPareja(rs.getString(9));
-                p.setCarga(rs.getDouble(10));
+                if (rs.next()) {
+                    p = new SupervivienteBean();
+                    p.setNumero_identi(rs.getString(1));
+                    p.setNombre(rs.getString(2));
+                    p.setApellido(rs.getString(3));
+                    p.setSexo(rs.getString(4));
+                    p.setPeso(rs.getDouble(5));
+                    p.setFuerza(rs.getDouble(6));
+                    p.setParejaNombre(rs.getString(7));
+                    p.setParejaApellido(rs.getString(8));
+                    p.setIdPareja(rs.getString(9));
+                    p.setCarga(rs.getDouble(10));
+                }
             }
 
         } catch (SQLException e) {

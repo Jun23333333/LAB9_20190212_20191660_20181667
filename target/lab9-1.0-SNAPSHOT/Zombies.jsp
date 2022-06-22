@@ -1,5 +1,12 @@
-
+<%@ page import="Beans.ZombieBean" %>
+<%@ page import="java.util.ArrayList" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<jsp:useBean id="listaZombie" scope="request" type="java.util.ArrayList<Beans.ZombieBean>" />
+<jsp:useBean id="variante_comun" scope="request" type="Servlets.ZombieServlet" />
+<jsp:useBean id="Porcentaje_hombre" scope="request" type="Servlets.ZombieServlet" />
+<jsp:useBean id="Porcentaje_mujer" scope="request" type="Servlets.ZombieServlet" />
+<jsp:useBean id="Porcentaje_otro" scope="request" type="Servlets.ZombieServlet" />
+<jsp:useBean id="Promedio_victima" scope="request" type="Servlets.ZombieServlet" />
 <!doctype html>
 <html lang="en">
 <head>
@@ -26,7 +33,67 @@
 </div>
 <div class="b-example-divider"></div>
 
+<div class="table-responsive">
+    <table class="table table-striped table-sm">
+        <thead>
+        <tr>
+            <th></th><th></th><th></th><th></th><th></th>
+            <th scope="col">Numero de Identificacion</th>
+            <th scope="col">Nombre y Apellido</th>
+            <th scope="col">Sexo</th>
+            <th scope="col">Tiempo Infectado</th>
+            <th scope="col">Variante de virus</th>
+            <th scope="col">Numero de Victimas</th>
+            <th scope="col">Tipo de zombie</th>
+        </tr>
+        </thead>
+        <%for (ZombieBean zombie : listaZombie) {%>
+        <tr>
+            </td>
+            <th></th><th></th><th></th><th></th><th></th>
+            <td><%=zombie.getNumero_identi()%> </td>
+            <td><%=zombie.getNombre()%> <%=zombie.getApellido()%> </td>
+            <td><%=zombie.getSexo()%> </td>
+            <td><%=zombie.getTiempo_infectado()%></td>
+            <td><%=zombie.getVariante()%></td>
+            <td><%=zombie.getNum_victima()%></td>
+            <td><%=zombie.getTipo()%></td>
+        </tr>
+        <% }%>
+    </table>
+    <a href="<%=request.getContextPath()%>/ZombieServlet?a=agregar">
+        <button type="button" class="btn btn-Warning">Agregar Zombie</button>
+    </a>
+</div>
 
+<div class="table-responsive">
+    <table class="table table-striped table-sm">
+        <thead>
+        <tr>
+            <th scope="col">Variante de virus mas comun</th>
+            <th scope="col">Promedio de victima por zombie</th>
+            <th scope="col">Porcentaje de zombie</th>
+        </tr>
+        </thead>
+
+        <tr>
+            <td><%=variante_comun%></td>
+            <td><%=Promedio_victima%></td>
+            <td>Hombre: <%=Porcentaje_hombre%> %</td>
+        </tr>
+        <tr>
+            <td> </td>
+            <td> </td>
+            <td>Mujer: <%=Porcentaje_mujer%> %</td>
+        </tr>
+        <tr>
+            <td> </td>
+            <td> </td>
+            <td>Otros: <%=Porcentaje_otro%> %</td>
+        </tr>
+
+    </table>
+</div>
 
 
 <script src="/docs/5.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
