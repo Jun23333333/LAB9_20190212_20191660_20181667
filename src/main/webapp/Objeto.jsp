@@ -71,7 +71,7 @@
             else {%>
             <td> </td>
             <% } %>
-            <a href="<%=request.getContextPath()%>/ObjetoServlet?a=editar">
+            <a href="<%=request.getContextPath()%>/ObjetoServlet?a=editar&tipo=<%=objeto.getTipo()%>&id=<%=objeto.getNombre()%>">
                 <button type="button" class="btn btn-Primary">Editar</button>
             </a>
         </tr>
