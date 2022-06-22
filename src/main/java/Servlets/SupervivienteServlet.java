@@ -82,7 +82,7 @@ public class SupervivienteServlet extends HttpServlet {
                 superviviente.setIdPareja(request.getParameter("pareja"));
                 supervivienteDao.actualizarSuperviviente(superviviente);
 
-                response.sendRedirect("SupervivienteServlet?action=lista");
+                response.sendRedirect("SupervivienteServlet?action=listar");
 
                 break;
         }

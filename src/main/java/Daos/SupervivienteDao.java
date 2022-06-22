@@ -103,7 +103,7 @@ public class SupervivienteDao extends BaseDao{
             }
 
         } catch (SQLException e) {
-            System.out.println("Hubo un error en la conexión!");
+            System.out.println("Hubo un error en la conexión obteneter super!");
             e.printStackTrace();
         }
         return p;
@@ -134,6 +134,7 @@ public class SupervivienteDao extends BaseDao{
             pstmt.executeUpdate();
 
         } catch (SQLException ex) {
+            System.out.println("Hubo un error en la conexión obteneter actualizar!");
             ex.printStackTrace();
         }
     }
