@@ -17,7 +17,7 @@
             <h1 class='mb-3'>Editar usuario</h1>
             <hr>
             <form method="POST" action="SupervivienteServlet?action=actualizar">
-                <input type="hidden" name="employee_id" value="<%= superviviente.getNumero_identi()%>"/>
+                <input type="hidden" name="numeroid" value="<%= superviviente.getNumero_identi()%>"/>
                 <div class="form-group">
                     <label for="nombre">Nombre</label>
                     <input type="text" class="form-control form-control-sm" id="nombre" name="nombre"
@@ -25,7 +25,7 @@
                 </div>
                 <div class="form-group">
                     <label for="apellido">Apellido</label>
-                    <input type="text" class="form-control form-control-sm" id="apellido" name="apellido"
+                    <input type="text" disabled class="form-control form-control-sm" id="apellido" name="apellido"
                            value="<%= superviviente.getApellido() == null ? "" : superviviente.getApellido()%>">
                 </div>
                 <div class="form-group">
@@ -44,9 +44,7 @@
                         <option selected>Escoger pareja</option>
                         <option selected>Sol@</option>
                         <% for (SupervivienteBean supervi: listaSuperviviente){
-
                         %>
-
                         <option value="<%=supervi.getNumero_identi()%>"><%=supervi.getNombre()%> <%=supervi.getApellido()%></option>
                         <% } %>
                     </select>
