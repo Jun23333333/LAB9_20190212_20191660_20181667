@@ -1,7 +1,7 @@
-<%@ page import="Beans.SupervivienteBean" %>
+<%@ page import="Beans.VarianteBean" %>
 <%@ page import="java.util.ArrayList" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<jsp:useBean id="listaSuperviviente" scope="request" type="java.util.ArrayList<Beans.SupervivienteBean>" />
+<jsp:useBean id="listaVariante" scope="request" type="java.util.ArrayList<Beans.VarianteBean>" />
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -9,7 +9,7 @@
             name="viewport"
             content="width=device-width, initial-scale=1.0, shrink-to-fit=no"
     />
-    <title>agregar superviviente</title>
+    <title>agregar zombie</title>
     <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -35,10 +35,10 @@
                             class="card-header"
                             style="background-color: #e72d4b; color: white"
                     >
-                        <h4 class="my-2">Registrar Superviviente</h4>
+                        <h4 class="my-2">Registrar Zombie</h4>
                     </div>
                     <div class="card-body p-4 p-md-5">
-                        <form method="POST" action="<%=request.getContextPath()%>/SupervivienteServlet?action=crear">
+                        <form method="POST" action="<%=request.getContextPath()%>/ZombieServlet?action=crear">
                             <div class="row">
                                 <div class="col-md-6 mb-1">
 
@@ -71,30 +71,33 @@
 
                                 <div class="col-md-6 mb-4 text-center">
                                     <div class="form-outline mb-4">
-                                        <label class="form-label" for="peso">Peso</label>
-                                        <input name="peso"
+                                        <label class="form-label" for="tiempo">Tiempo Infectado</label>
+                                        <input name="tiempo"
                                                type="number"
-                                               id="peso"
+                                               id="tiempo"
                                                class="form-control"
-                                               placeholder="Ingrese su peso"/>
+                                               placeholder="Ingrese el tiempo infectado"/>
                                     </div>
                                     <div class="form-outline mb-4">
-                                        <label class="form-label" for="fuerza">Fuerza</label>
-                                        <input name="fuerza"
-                                               type="number"
-                                               id="fuerza"
-                                               class="form-control"
-                                               placeholder="Ingrese su fuerza"/>
-                                    </div>
-                                    <div class="form-outline mb-4">
-                                        <label class="form-label" for="pareja">Pareja</label>
-                                        <select name="pareja"
-                                               id="pareja"
-                                               class="form-control">
-                                            <option value="alone">--Forever Alone--</option>
-                                            <% for (SupervivienteBean superviviente : listaSuperviviente){%>
-                                            <option value="<%=superviviente.getNumero_identi()%>"><%=superviviente.getNombre()%> <%=superviviente.getApellido()%></option>
+                                        <label class="form-label" for="variante">Variante de Virus</label>
+                                        <select name="variante"
+                                                id="variante"
+                                                class="form-control">
+                                            <% for (VarianteBean variante : listaVariante){%>
+                                            <option value="<%=variante.getId()%>"><%=variante.getNombre()%> </option>
                                             <% } %>
+                                        </select>
+                                    </div>
+                                    <div class="form-outline mb-4">
+                                        <label class="form-label" for="tipo">Tipo de zombie</label>
+                                        <select name="tipo"
+                                                id="tipo"
+                                                class="form-control">
+                                            <option value="Demoledor">Demoledor</option>
+                                            <option value="Rapido">Rapido</option>
+                                            <option value="Nino">Niño</option>
+                                            <option value="Normal">Normal</option>
+                                            <option value="Otro">Otro</option>
                                         </select>
                                     </div>
 
@@ -102,8 +105,8 @@
                             </div>
 
                             <div class="">
-                                <a href="<%=request.getContextPath()%>/SupervivienteServlet" class="btn btn-danger">Regresar</a>
-                                <button type="submit" class="btn btn-tele">Crear Superviviente</button>
+                                <a href="<%=request.getContextPath()%>/ZombieServlet" class="btn btn-danger">Regresar</a>
+                                <button type="submit" class="btn btn-tele">Crear Zombie</button>
                             </div>
                         </form>
                     </div>

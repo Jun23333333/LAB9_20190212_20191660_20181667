@@ -15,7 +15,6 @@ public class SupervivienteServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String action = request.getParameter("action") == null ? "listar" : request.getParameter("action");
         SupervivienteDao supervivienteDao = new SupervivienteDao();
-        int idOperador = 0;
         switch (action){
             case "listar":
                 request.setAttribute("listaSuperviviente",supervivienteDao.listar());
