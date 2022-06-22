@@ -1,17 +1,17 @@
 package Beans;
 
 public class HumanoBean {
-    private int numero_identi;
+    private String numero_identi;
     private String nombre;
     private String apellido;
     private String sexo;
     private String estado;
 
-    public int getNumero_identi() {
+    public String getNumero_identi() {
         return numero_identi;
     }
 
-    public void setNumero_identi(int numero_identi) {
+    public void setNumero_identi(String numero_identi) {
         this.numero_identi = numero_identi;
     }
 

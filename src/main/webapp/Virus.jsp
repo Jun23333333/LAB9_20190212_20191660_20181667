@@ -30,19 +30,22 @@
     </header>
 </div>
 <div class="b-example-divider"></div>
-
+<h3>Virus activos: <%=activos%></h3>
 <div class="table-responsive">
     <table class="table table-striped table-sm">
         <thead>
         <tr>
+            <th></th><th></th><th></th><th></th><th></th>
             <th scope="col">ID Virus</th><th scope="col">Virus</th>
             <th scope="col">ID Variante</th><th scope="col">Variante</th>
             <th scope="col">Eliminar</th>
+            <th></th><th></th><th></th><th></th>
         </tr>
         </thead>
+        <tbody>
         <%for (VirusBean virus : listaVirus) {%>
         <tr>
-
+            <th></th><th></th><th></th><th></th><th></th>
             <td><%=virus.getId()%></td>
             <td><%=virus.getVirus()%></td>
             <td><%=virus.getVariante().getId()%></td>
@@ -50,22 +53,29 @@
             <td><a href="<%=request.getContextPath()%>/VirusServlet?action=eliminar&idVirus=<%=virus.getId()%>&idVariante=<%=virus.getVariante().getId()%>">
                 <button type="button" class="btn btn-danger">Eliminar</button>
             </a></td>
+            <th></th><th></th><th></th><th></th>
         </tr>
         <% }%>
+        </tbody>
     </table>
     <table class="table table-striped table-sm">
         <thead>
         <tr>
-
+            <th></th><th></th><th></th><th></th><th></th>
             <th scope="col">Variante</th><th scope="col">Casos Encontrados</th>
+            <th></th><th></th><th></th><th></th>
         </tr>
         </thead>
+        <tbody>
         <%for (VirusBean virus : casos) {%>
         <tr>
+            <th></th><th></th><th></th><th></th><th></th>
             <td><%=virus.getVariante().getNombre()%></td>
             <td><%=virus.getCaso()%></td>
+            <th></th><th></th><th></th><th></th>
         </tr>
         <%}%>
+        </tbody>
     </table>
     <table class="table table-striped table-sm">
         <thead>

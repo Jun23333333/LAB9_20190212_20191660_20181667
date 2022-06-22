@@ -1,21 +1,38 @@
 package Beans;
 
 public class SupervivienteBean {
-    private int numero_identi;
+    private String numero_identi;
     private String nombre;
     private String apellido;
     private String estado;
     private double peso;
     private double fuerza;
-    private String pareja;
+    private String parejaNombre;
+    private String parejaApellido;
     private double carga;
     private String sexo;
 
-    public int getNumero_identi() {
+    public String getParejaNombre() {
+        return parejaNombre;
+    }
+
+    public void setParejaNombre(String parejaNombre) {
+        this.parejaNombre = parejaNombre;
+    }
+
+    public String getParejaApellido() {
+        return parejaApellido;
+    }
+
+    public void setParejaApellido(String parejaApellido) {
+        this.parejaApellido = parejaApellido;
+    }
+
+    public String getNumero_identi() {
         return numero_identi;
     }
 
-    public void setNumero_identi(int numero_identi) {
+    public void setNumero_identi(String numero_identi) {
         this.numero_identi = numero_identi;
     }
 
@@ -51,13 +68,7 @@ public class SupervivienteBean {
         this.fuerza = fuerza;
     }
 
-    public String getPareja() {
-        return pareja;
-    }
 
-    public void setPareja(String pareja) {
-        this.pareja = pareja;
-    }
 
     public double getCarga() {
         return carga;

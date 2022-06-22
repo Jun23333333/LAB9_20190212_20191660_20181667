@@ -2,33 +2,29 @@ package Daos;
 
 import Beans.HumanoBean;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 
 public class HumanoDao extends BaseDao{
-    public ArrayList<HumanoBean> listaHumano(){
+    public ArrayList<HumanoBean> listarHumano(){
 
-        String rol="Humano";
+        //String rol="Humano";
         ArrayList<HumanoBean> listaHumano = new ArrayList<>();
         String sql = " select idHumano, nombre, apellido, sexo, estado from humano";
 
         try (Connection conn = this.getConnection();
-             PreparedStatement pstmt = conn.prepareStatement(sql)) {
-
-            try (ResultSet resultSet = pstmt.executeQuery()) {
-                while (resultSet.next()) {
-                    HumanoBean p = new HumanoBean();
-                    p.setNumero_identi(resultSet.getInt(1));
-                    p.setNombre(resultSet.getString(3));
-                    p.setApellido(resultSet.getString(2));
-                    p.setSexo(resultSet.getString(4));
-                    p.setEstado(resultSet.getString(5));
-                    listaHumano.add(p);
-                }
+             Statement stmt = conn.createStatement();
+             ResultSet rs = stmt.executeQuery(sql);) {
+            while (rs.next()) {
+                HumanoBean p = new HumanoBean();
+                p.setNumero_identi(rs.getString(1));
+                p.setNombre(rs.getString(2));
+                p.setApellido(rs.getString(3));
+                p.setSexo(rs.getString(4));
+                p.setEstado(rs.getString(5));
+                listaHumano.add(p);
             }
+
         } catch (SQLException e) {
             System.out.println("Hubo un error en la conexión!");
             e.printStackTrace();
