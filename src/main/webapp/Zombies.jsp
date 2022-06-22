@@ -78,7 +78,7 @@
 
         <tr>
             <td><%=variante_comun%></td>
-            <td><%=Promedio_victima%> <%=zombie.getApellido()%> </td>
+            <td><%=Promedio_victima%></td>
             <td>Hombre: <%=Porcentaje_hombre%> %</td>
         </tr>
         <tr>
