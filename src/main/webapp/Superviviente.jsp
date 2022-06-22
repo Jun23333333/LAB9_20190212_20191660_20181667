@@ -29,6 +29,10 @@
 <div class="b-example-divider"></div>
 
 <div class="table-responsive">
+    <a href="<%=request.getContextPath()%>/SupervivienteServlet?action=agregar">
+        <center><button type="button" class="btn btn-Warning"><b>Agregar Superviviente</b></button></center>
+
+    </a>
     <table class="table table-striped table-sm">
         <thead>
         <tr>
@@ -40,6 +44,8 @@
             <th scope="col">Fuerza</th>
             <th scope="col">Pareja</th>
             <th scope="col">Peso Cargado</th>
+            <th></th>
+            <th></th>
         </tr>
         </thead>
         <%for (SupervivienteBean superviviente : listaSuperviviente) {%>
@@ -54,15 +60,12 @@
             <td><%=superviviente.getParejaNombre()== null ? "" : superviviente.getParejaNombre()%>
                 <%=superviviente.getParejaApellido() == null ? "Sin Pareja" : superviviente.getParejaApellido() %></td>
             <td><%=superviviente.getCarga()%> Kg</td>
+            <td><a href="<%=request.getContextPath()%>/SupervivienteServlet?action=editar&id=<%=superviviente.getNumero_identi()%>"><button type="button" class="btn btn-outline-primary">Editar</button></a></td>
+            <td><a href="<%=request.getContextPath()%>/SupervivienteServlet?action=borrar&id=<%=superviviente.getNumero_identi()%>"><button type="button" class="btn btn-outline-danger">Eliminar</button></a></td>
         </tr>
         <% }%>
     </table>
-    <a href="<%=request.getContextPath()%>/SupervivienteServlet?a=agregar">
-        <button type="button" class="btn btn-Warning">Agregar Superviviente</button>
-    </a>
-    <a href="<%=request.getContextPath()%>/SupervivienteServlet">
-        <button type="button" class="btn btn-Info">Supervivientes</button>
-    </a>
+
 </div>
 
 
