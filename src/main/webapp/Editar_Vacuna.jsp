@@ -1,7 +1,7 @@
-<%@ page import="Beans.SupervivienteBean" %>
+<%@ page import="Beans.ObjetoBean" %>
 <%@ page import="java.util.ArrayList" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<jsp:useBean id="listaSuperviviente" scope="request" type="java.util.ArrayList<Beans.SupervivienteBean>" />
+<jsp:useBean id="vacuna" scope="request" type="Beans.ObjetoBean" />
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -9,7 +9,7 @@
             name="viewport"
             content="width=device-width, initial-scale=1.0, shrink-to-fit=no"
     />
-    <title>agregar superviviente</title>
+    <title>editar vacuna</title>
     <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -35,10 +35,10 @@
                             class="card-header"
                             style="background-color: #e72d4b; color: white"
                     >
-                        <h4 class="my-2">Registrar Superviviente</h4>
+                        <h4 class="my-2">Editar Vacuna</h4>
                     </div>
                     <div class="card-body p-4 p-md-5">
-                        <form method="POST" action="<%=request.getContextPath()%>/SupervivienteServlet?action=crear">
+                        <form method="POST" action="<%=request.getContextPath()%>/ObjetoServlet?action=editar_vacuna">
                             <div class="row">
                                 <div class="col-md-6 mb-1">
 
@@ -48,62 +48,75 @@
                                                type="text"
                                                id="nombre"
                                                class="form-control"
+                                               value="<%=vacuna.getNombre()%>"
                                                placeholder="Ingrese nombre"/>
                                     </div>
                                     <div class="form-outline mb-4">
-                                        <label class="form-label" for="apellido">Apellidos</label>
-                                        <input name="apellido"
-                                               type="text"
-                                               id="apellido"
+                                        <label class="form-label" for="Peso">Peso</label>
+                                        <input name="Peso"
+                                               type="number"
+                                               id="Peso"
                                                class="form-control"
-                                               placeholder="Ingrese apellido"/>
+                                               value="<%=vacuna.getPeso()%>"
+                                               placeholder="Ingrese su peso"/>
                                     </div>
                                     <div class="form-outline mb-4">
-                                        <label class="form-label" for="NI">Numero de Identificacion</label>
-                                        <input name="NI"
+                                        <label class="form-label" for="demo">Efectividad para Demoledor</label>
+                                        <input name="demo"
                                                type="number"
-                                               id="NI"
+                                               id="demo"
                                                class="form-control"
-                                               placeholder="Ingrese num de identificacion"/>
+                                               value="<%=vacuna.getEfectividad_demo()%>"
+                                               placeholder="Ingrese la efectividad"/>
                                     </div>
 
                                 </div>
 
+
+                                    <div class="form-outline mb-4">
+                                        <label class="form-label" for="rapi">Efectividad para Rapido</label>
+                                        <input name="rapi"
+                                               type="number"
+                                               id="rapi"
+                                               class="form-control"
+                                               value="<%=vacuna.getEfectividad_rapi()%>"
+                                               placeholder="Ingrese la efectividad"/>
+                                    </div>
                                 <div class="col-md-6 mb-4 text-center">
                                     <div class="form-outline mb-4">
-                                        <label class="form-label" for="peso">Peso</label>
-                                        <input name="peso"
+                                        <label class="form-label" for="normal">Efectividad para Normal</label>
+                                        <input name="normal"
                                                type="number"
-                                               id="peso"
+                                               id="normal"
                                                class="form-control"
-                                               placeholder="Ingrese su peso"/>
+                                               value="<%=vacuna.getEfectividad_normal()%>"
+                                               placeholder="Ingrese la efectividad"/>
                                     </div>
                                     <div class="form-outline mb-4">
-                                        <label class="form-label" for="fuerza">Fuerza</label>
-                                        <input name="fuerza"
+                                        <label class="form-label" for="nino">Efectividad para Niño</label>
+                                        <input name="nino"
                                                type="number"
-                                               id="fuerza"
+                                               id="nino"
                                                class="form-control"
-                                               placeholder="Ingrese su fuerza"/>
+                                               value="<%=vacuna.getEfectividad_nino()%>"
+                                               placeholder="Ingrese la efectividad"/>
                                     </div>
                                     <div class="form-outline mb-4">
-                                        <label class="form-label" for="pareja">Pareja</label>
-                                        <select name="pareja"
-                                               id="pareja"
-                                               class="form-control">
-                                            <option value="alone">--Forever Alone--</option>
-                                            <% for (SupervivienteBean superviviente : listaSuperviviente){%>
-                                            <option value="<%=superviviente.getNumero_identi()%>"><%=superviviente.getNombre()%> <%=superviviente.getApellido()%></option>
-                                            <% } %>
-                                        </select>
+                                        <label class="form-label" for="otro">Efectividad para Otros</label>
+                                        <input name="otro"
+                                               type="number"
+                                               id="otro"
+                                               class="form-control"
+                                               value="<%=vacuna.getEfectividad_otro()%>"
+                                               placeholder="Ingrese la efectividad"/>
                                     </div>
 
                                 </div>
                             </div>
 
                             <div class="">
-                                <a href="<%=request.getContextPath()%>/SupervivienteServlet" class="btn btn-danger">Regresar</a>
-                                <button type="submit" class="btn btn-tele">Crear Superviviente</button>
+                                <a href="<%=request.getContextPath()%>/ObjetoServlet" class="btn btn-danger">Regresar</a>
+                                <button type="submit" class="btn btn-tele">Editar Vacuna</button>
                             </div>
                         </form>
                     </div>

@@ -1,5 +1,7 @@
-
+<%@ page import="Beans.ObjetoBean" %>
+<%@ page import="java.util.ArrayList" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<jsp:useBean id="listaObjeto" scope="request" type="java.util.ArrayList<Beans.ObjetoBean>" />
 <!doctype html>
 <html lang="en">
 <head>
@@ -26,6 +28,63 @@
 </div>
 <div class="b-example-divider"></div>
 
+<div class="table-responsive" >
+    <table class="table table-striped table-sm">
+        <thead>
+        <tr>
+            <th scope="col">Nombre</th>
+            <th scope="col">Peso</th>
+            <th scope="col">Tipo</th>
+            <th scope="col">Efectividad</th>
+            <th> </th>
+        </tr>
+        </thead>
+        <tbody>
+        <% for (ObjetoBean objeto : listaObjeto ) {%>
+        <tr>
+            <td><%=objeto.getNombre()%></td>
+            <td><%=objeto.getPeso()%> Kg</td>
+            <td><%=objeto.getTipo()%></td>
+            <% if(objeto.getTipo() == "Vacuna"){%>
+            <td id="efectividad"
+                class="table-elipse"
+                data-bs-toggle="collapse"
+                data-bs-target="abc"
+            >
+                <a href="#" class="fas fa-ellipsis-h text-black-50"></a>
+            </td>
+            <tr id="abc" class="collapse cell-1 row-child">
+                <td colspan="0.7">Demoledor</td>
+                <td colspan="0.7">Rapido</td>
+                <td colspan="0.7">Niño</td>
+                <td colspan="0.7">Normal</td>
+                <td colspan="0.7">Otros</td>
+            </tr>
+            <tr id="abc" class="collapse cell-1 row-child">
+                <td colspan="0.7"><%=objeto.getEfectividad_demo()%></td>
+                <td colspan="0.7"><%=objeto.getEfectividad_rapi()%></td>
+                <td colspan="0.7"><%=objeto.getEfectividad_nino()%></td>
+                <td colspan="0.7"><%=objeto.getEfectividad_normal()%></td>
+                <td colspan="0.7"><%=objeto.getEfectividad_otro()%></td>
+            </tr>
+            <% }
+            else {%>
+            <td> </td>
+            <% } %>
+            <a href="<%=request.getContextPath()%>/ObjetoServlet?a=editar">
+                <button type="button" class="btn btn-Primary">Editar</button>
+            </a>
+        </tr>
+        <% } %>
+        </tbody>
+    </table>
+    <a href="<%=request.getContextPath()%>/ObjetoServlet?a=crear_objeto">
+        <button type="button" class="btn btn-Warning">Crear Objeto</button>
+    </a>
+    <a href="<%=request.getContextPath()%>/ObjetoServlet?a=crear_vacuna">
+        <button type="button" class="btn btn-Warning">Crear Vacuna</button>
+    </a>
+</div>
 
 
 
