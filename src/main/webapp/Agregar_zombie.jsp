@@ -1,7 +1,11 @@
 <%@ page import="Beans.VarianteBean" %>
 <%@ page import="java.util.ArrayList" %>
+<%@ page import="Beans.ZombieBean" %>
+<%@ page import="Beans.VirusBean" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <jsp:useBean id="listaVariante" scope="request" type="java.util.ArrayList<Beans.VarianteBean>" />
+<jsp:useBean id="listasexo" scope="request" type="java.util.ArrayList<Beans.ZombieBean>" />
+<jsp:useBean id="listaTipo" scope="request" type="java.util.ArrayList<Beans.ZombieBean>" />
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -43,28 +47,22 @@
                                 <div class="col-md-6 mb-1">
 
                                     <div class="form-outline mb-4">
-                                        <label class="form-label" for="nombre">Nombre</label>
-                                        <input name="nombre"
-                                               type="text"
-                                               id="nombre"
-                                               class="form-control"
-                                               placeholder="Ingrese nombre"/>
+                                        <label class="form-label" for="tipo">Elegir tipo</label>
+                                        <select class="form-select form-select-sm" name="filtro" aria-label=".form-select-sm example">
+                                            <option value="Selecciona el tipo" >Selecciona el tipo</option>
+                                            <%for( ZombieBean zombieBean: listaTipo){%>
+                                            <option value="<%=zombieBean.getTipo()%>" id="tipo" name="tipo"><%=zombieBean.getTipo()%></option>
+                                            <%}%>
+                                        </select>
                                     </div>
                                     <div class="form-outline mb-4">
-                                        <label class="form-label" for="apellido">Apellidos</label>
-                                        <input name="apellido"
-                                               type="text"
-                                               id="apellido"
-                                               class="form-control"
-                                               placeholder="Ingrese apellido"/>
-                                    </div>
-                                    <div class="form-outline mb-4">
-                                        <label class="form-label" for="NI">Numero de Identificacion</label>
-                                        <input name="NI"
-                                               type="number"
-                                               id="NI"
-                                               class="form-control"
-                                               placeholder="Ingrese num de identificacion"/>
+                                        <label class="form-label" for="variante">Elegir variante</label>
+                                        <select class="form-select form-select-sm" name="filtro" aria-label=".form-select-sm example">
+                                        <option value="Selecciona el tipo" >Selecciona el tipo</option>
+                                        <%for( VarianteBean varianteBean: listaVariante){%>
+                                        <option value="<%=varianteBean.getId()%>" id="variante" name="variante"><%=varianteBean.getNombre()%></option>
+                                        <%}%>
+                                    </select>
                                     </div>
 
                                 </div>
@@ -78,28 +76,7 @@
                                                class="form-control"
                                                placeholder="Ingrese el tiempo infectado"/>
                                     </div>
-                                    <div class="form-outline mb-4">
-                                        <label class="form-label" for="variante">Variante de Virus</label>
-                                        <select name="variante"
-                                                id="variante"
-                                                class="form-control">
-                                            <% for (VarianteBean variante : listaVariante){%>
-                                            <option value="<%=variante.getId()%>"><%=variante.getNombre()%> </option>
-                                            <% } %>
-                                        </select>
-                                    </div>
-                                    <div class="form-outline mb-4">
-                                        <label class="form-label" for="tipo">Tipo de zombie</label>
-                                        <select name="tipo"
-                                                id="tipo"
-                                                class="form-control">
-                                            <option value="Demoledor">Demoledor</option>
-                                            <option value="Rapido">Rapido</option>
-                                            <option value="Nino">Niño</option>
-                                            <option value="Normal">Normal</option>
-                                            <option value="Otro">Otro</option>
-                                        </select>
-                                    </div>
+
 
                                 </div>
                             </div>

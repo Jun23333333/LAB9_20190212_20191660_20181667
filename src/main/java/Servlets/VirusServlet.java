@@ -65,5 +65,6 @@ public class VirusServlet extends HttpServlet {
                 response.sendRedirect(request.getContextPath()+"/VirusServlet");
                 break;
         }
+
     }
 }

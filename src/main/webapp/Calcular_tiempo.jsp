@@ -2,10 +2,12 @@
   Created by IntelliJ IDEA.
   User: david
   Date: 21/06/2022
-  Time: 12:26
+  Time: 21:11
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<jsp:useBean id="idZombie" scope="request" type="java.lang.String"/>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -13,7 +15,7 @@
             name="viewport"
             content="width=device-width, initial-scale=1.0, shrink-to-fit=no"
     />
-    <title>Agregar variante</title>
+    <title>Tiempo de infección</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -39,29 +41,26 @@
                             class="card-header"
                             style="background-color: #e72d4b; color: white"
                     >
-                        <h2 class="my-2">Registrar Virus</h2>
+                        <h2 class="my-2">Calcular Tiempo de infección</h2>
                     </div>
                     <div class="card-body p-4 p-md-5">
-                        <form method="POST" action="<%=request.getContextPath()%>/VirusServlet?action=crear">
+                        <form method="POST" action="<%=request.getContextPath()%>/ZombieServlet?action=calcular">
                             <div class="row">
                                 <div class="col-md-6 mb-1">
 
                                     <div class="form-outline mb-4">
-                                        <label class="form-label" for="virus">Virus</label>
-                                        <input name="virus"
-                                               type="text"
-                                               id="virus"
+                                        <label class="form-label" for="fecha">Fecha y Hora de infección</label>
+                                        <input name="fecha"
+                                               type="datetime-local"
+                                               id="fecha"
                                                class="form-control"
-                                               placeholder="Ingrese virus"/>
+                                               >
                                     </div>
-                                    <div class="form-outline mb-4">
-                                        <label class="form-label" for="variante">Variante</label>
-                                        <input name="variante"
-                                               type="text"
-                                               id="variante"
-                                               class="form-control"
-                                               placeholder="Ingrese variante"/>
-                                    </div>
+                                    <input name="id"
+                                           type="hidden"
+                                           id="id"
+                                           class="form-control"
+                                           value="<%=idZombie%>"/>
 
                                 </div>
 
@@ -69,8 +68,8 @@
                             </div>
 
                             <div class="">
-                                <a href="<%=request.getContextPath()%>/VirusServlet" class="btn btn-danger">Regresar</a>
-                                <button type="submit" class="btn btn-tele">Crear Virus</button>
+                                <a href="<%=request.getContextPath()%>/ZombieServlet" class="btn btn-danger">Regresar</a>
+                                <button type="submit" class="btn btn-tele">Calcular Horas</button>
                             </div>
                         </form>
                     </div>
