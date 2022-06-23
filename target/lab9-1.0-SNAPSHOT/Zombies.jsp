@@ -1,4 +1,6 @@
 <%@ page import="Beans.ZombieBean" %>
+<%@ page import="Beans.VarianteBean" %>
+<%@ page import="java.util.ArrayList" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <jsp:useBean id="listaZombie" scope="request" type="java.util.ArrayList<Beans.ZombieBean>"/>
 <jsp:useBean id="varianteMasComun" scope="request" type="Beans.VarianteBean" />
@@ -28,11 +30,11 @@
         </a>
 
         <ul class="nav nav-pills">
-            <li class="nav-item"><a href="#" class="nav-link ">Humanos</a></li>
-            <li class="nav-item"><a href="#" class="nav-link ">Supervivientes</a></li>
-            <li class="nav-item"><a href="#" class="nav-link ">Virus</a></li>
-            <li class="nav-item"><a href="#" class="nav-link active" aria-current="page">Zombies</a></li>
-            <li class="nav-item"><a href="#" class="nav-link">Objetos</a></li>
+            <li class="nav-item"><a href="<%=request.getContextPath()%>" class="nav-link ">Humanos</a></li>
+            <li class="nav-item"><a href="<%=request.getContextPath()%>/SupervivienteServlet" class="nav-link ">Supervivientes</a></li>
+            <li class="nav-item"><a href="<%=request.getContextPath()%>/VirusServlet" class="nav-link ">Virus</a></li>
+            <li class="nav-item"><a href="<%=request.getContextPath()%>/ZombieServlet" class="nav-link active" aria-current="page">Zombies</a></li>
+            <li class="nav-item"><a href="<%=request.getContextPath()%>/ObjetoServlet" class="nav-link">Objetos</a></li>
             <li class="nav-item"><a href="#" class="nav-link">Cacería</a></li>
         </ul>
     </header>
