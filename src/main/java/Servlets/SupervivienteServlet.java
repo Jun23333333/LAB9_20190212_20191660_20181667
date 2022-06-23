@@ -93,6 +93,7 @@ public class SupervivienteServlet extends HttpServlet {
                     supervivienteDao.actualizarPareja(idpareja,numeroid);
                     response.sendRedirect("SupervivienteServlet?action=listar");
                 }
+                //....
 
                 break;
         }
