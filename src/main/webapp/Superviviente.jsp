@@ -44,6 +44,9 @@
             <th scope="col">Fuerza</th>
             <th scope="col">Pareja</th>
             <th scope="col">Peso Cargado</th>
+            <th scope="col">Inventario</th>
+            <th scope="col"></th>
+            <th scope="col"></th>
             <th></th>
             <th></th>
         </tr>
@@ -60,9 +63,10 @@
             <td><%=superviviente.getParejaNombre()== null ? "" : superviviente.getParejaNombre()%>
                 <%=superviviente.getParejaApellido() == null ? "Sin Pareja" : superviviente.getParejaApellido() %></td>
             <td><%=superviviente.getCarga()%> Kg</td>
+            <td><a href="<%=request.getContextPath()%>/SupervivienteServlet?action=verinventario&id=<%=superviviente.getNumero_identi()%>"><button type="button" class="btn btn-outline-info">Ver</button></a></td>
             <td><a href="<%=request.getContextPath()%>/SupervivienteServlet?action=editar&id=<%=superviviente.getNumero_identi()%>"><button type="button" class="btn btn-outline-primary">Editar</button></a></td>
             <td><a href="<%=request.getContextPath()%>/SupervivienteServlet?action=borrar&id=<%=superviviente.getNumero_identi()%>"><button type="button" class="btn btn-outline-danger">Eliminar</button></a></td>
-        </tr>
+            </tr>
         <% }%>
     </table>
 

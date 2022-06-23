@@ -21,6 +21,14 @@ public class SupervivienteServlet extends HttpServlet {
                 RequestDispatcher requestDispatcher = request.getRequestDispatcher("Superviviente.jsp");
                 requestDispatcher.forward(request,response);
                 break;
+
+            case "verinventario":
+                String humanoid= request.getParameter("id");
+                request.setAttribute("listaobjeto",supervivienteDao.listainventario(humanoid));
+                request.setAttribute("idhumano", humanoid);
+                requestDispatcher = request.getRequestDispatcher("ListaInventario.jsp");
+                requestDispatcher.forward(request,response);
+                break;
             case "agregar":
                 requestDispatcher = request.getRequestDispatcher("NuevoSuperviviente.jsp");
                 requestDispatcher.forward(request,response);
@@ -52,6 +60,17 @@ public class SupervivienteServlet extends HttpServlet {
                 requestDispatcher = request.getRequestDispatcher("EditarSuperviviente.jsp");
 
                 requestDispatcher.forward(request,response);
+                break;
+            case "borrarobjeto":
+
+                SupervivienteDao supervivienteDao1 = new SupervivienteDao();
+
+                String humanoidString = request.getParameter("idHumano");
+                String objetoidString = request.getParameter("idObjeto");
+                int idObjeto = Integer.parseInt(objetoidString);
+                supervivienteDao1.borrarobjeto(humanoidString,idObjeto);
+                response.sendRedirect("SupervivienteServlet?action=verinventario&id="+humanoidString);
+
                 break;
 
         }

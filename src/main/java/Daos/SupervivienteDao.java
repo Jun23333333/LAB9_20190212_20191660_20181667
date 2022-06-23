@@ -1,6 +1,7 @@
 package Daos;
 import java.util.Random;
 import Beans.HumanoBean;
+import Beans.ObjetoBean;
 import Beans.SupervivienteBean;
 
 import java.sql.*;
@@ -120,6 +121,7 @@ public class SupervivienteDao extends BaseDao{
             ex.printStackTrace();
         }
     }
+
     public void actualizarSuperviviente(SupervivienteBean superviviente) {
         String sql = "update humano set nombre = ?, peso=?, fuerza=?, idPareja= ?\n" +
                 "where idhumano=?;";
@@ -168,4 +170,81 @@ public class SupervivienteDao extends BaseDao{
             ex.printStackTrace();
         }
     }
+    public ArrayList<ObjetoBean> listainventario(String numero_identi) {
+
+        ArrayList<ObjetoBean> listaobjeto = new ArrayList<>();
+        String sql = "select obj.idobjeto, obj.nombre,obj.masa, obj.tipo, count(obj.nombre)  as cantidad, h.idHumano\n" +
+                "from humano h\n" +
+                "left join objetoporhumano oxh on h.idHumano= oxh.idHumano\n" +
+                "left join objeto obj on oxh.idObjeto =obj.idObjeto\n" +
+                "where h.idHumano= ?\n" +
+                "group by nombre;";
+
+        try (Connection conn = this.getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(sql);) {
+            pstmt.setString(1, numero_identi);
+
+            try (ResultSet rs = pstmt.executeQuery();) {
+                while (rs.next()) {
+                    ObjetoBean o = new ObjetoBean();
+                    o.setIdObjeto(rs.getInt(1));
+                    o.setNombre(rs.getString(2));
+                    o.setPeso(rs.getDouble(3));
+                    o.setTipo(rs.getString(4));
+                    o.setCantidad(rs.getInt(5));
+                    o.setIdHumano(rs.getString(6));
+                    listaobjeto.add(o);
+                }
+            }
+        } catch (SQLException e) {
+            System.out.println("Hubo un error en la conexión obteneter super!");
+            e.printStackTrace();
+        }
+        return listaobjeto;
+    }
+    public SupervivienteBean obtenerObjeto(String idHumano) {
+
+        SupervivienteBean p = null;
+
+        String sql = "select obj.idobjeto, obj.nombre,obj.masa, obj.tipo, count(obj.nombre)  as cantidad\n" +
+                "from humano h\n" +
+                "left join objetoporhumano oxh on h.idHumano= oxh.idHumano\n" +
+                "left join objeto obj on oxh.idObjeto =obj.idObjeto\n" +
+                "where h.idHumano= ?\n" +
+                "group by nombre;";
+
+        try (Connection conn = this.getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(sql);) {
+            pstmt.setString(1, idHumano);
+
+            try (ResultSet rs = pstmt.executeQuery();) {
+                if (rs.next()) {
+                    ObjetoBean o = new ObjetoBean();
+                    o.setIdObjeto(rs.getInt(1));
+                    o.setNombre(rs.getString(2));
+                    o.setPeso(rs.getDouble(3));
+                    o.setTipo(rs.getString(4));
+                    o.setCantidad(rs.getInt(5));
+                }
+            }
+
+        } catch (SQLException e) {
+            System.out.println("Hubo un error en la conexión obteneter super!");
+            e.printStackTrace();
+        }
+        return p;
+    }
+        public void borrarobjeto (String idHumano, int idObjeto) {
+            try (Connection conn = this.getConnection();
+                 PreparedStatement pstmt = conn.prepareStatement("DELETE FROM objetoporhumano WHERE idHumano = ? and idObjeto= ? ");) {
+
+                pstmt.setString(1, idHumano);
+                pstmt.setInt(2, idObjeto);
+                pstmt.executeUpdate();
+
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
+        }
+
 }

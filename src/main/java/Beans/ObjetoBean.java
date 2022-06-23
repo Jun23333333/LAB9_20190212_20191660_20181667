@@ -9,8 +9,33 @@ public class ObjetoBean {
     private double efectividad_nino;
     private double efectividad_normal;
     private double efectividad_otro;
+    private int cantidad;
+    private int idObjeto;
+    private String idHumano;
 
+    public String getIdHumano() {
+        return idHumano;
+    }
 
+    public void setIdHumano(String idHumano) {
+        this.idHumano = idHumano;
+    }
+
+    public int getIdObjeto() {
+        return idObjeto;
+    }
+
+    public void setIdObjeto(int idObjeto) {
+        this.idObjeto = idObjeto;
+    }
+
+    public int getCantidad() {
+        return cantidad;
+    }
+
+    public void setCantidad(int cantidad) {
+        this.cantidad = cantidad;
+    }
 
     public String getNombre() {
         return nombre;
