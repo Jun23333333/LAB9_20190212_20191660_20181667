@@ -9,7 +9,7 @@ public class ObjetosDao extends BaseDao{
     public ArrayList<ObjetoBean> listar(){
 
         ArrayList<ObjetoBean> listaObjeto = new ArrayList<>();
-        String sql = "";
+        String sql = "select nombre, masa, tipo from objeto";
 
         try (Connection conn = this.getConnection();
              Statement stmt = conn.createStatement();
@@ -34,7 +34,7 @@ public class ObjetosDao extends BaseDao{
         return listaObjeto;
     }
     public void crear_vacuna(String nombre, double peso, double demo, double rapi, double nino, double normal, double otro){
-        String sql= "balbal";
+        String sql= "insert into objeto (nombre, masa, tipo,  demoledor, rapido, nino, normal, otro) values (?,?,'vacuna',?,?,?,?,?,?)";
 
 
         try(Connection conn= this.getConnection();
@@ -53,7 +53,7 @@ public class ObjetosDao extends BaseDao{
         }
     }
     public void crear_objeto(String nombre, double peso){
-        String sql= "balbal";
+        String sql= "insert into objeto (nombre, masa) values (?,?)";
 
 
         try(Connection conn= this.getConnection();
@@ -70,7 +70,7 @@ public class ObjetosDao extends BaseDao{
     public ObjetoBean buscarPorNombre(String nombre) {
         ObjetoBean objetoBean = null;
 
-        String sql= "balbal";
+        String sql= "select nombre, masa, demoledor,rapido, nino,normal,otro from objeto";
 
 
         try(Connection conn= this.getConnection();
@@ -99,7 +99,7 @@ public class ObjetosDao extends BaseDao{
     }
 
     public void editar_objeto(String nombre, double peso){
-        String sql= "balbal";
+        String sql= "update objeto set nombre = ?, masa = ? where tipo = 'normal'";
 
 
         try(Connection conn= this.getConnection();
@@ -114,7 +114,7 @@ public class ObjetosDao extends BaseDao{
     }
 
     public void editar_vacuna(String nombre, double peso, double demo, double rapi, double nino, double normal, double otro){
-        String sql= "balbal";
+        String sql= "update objeto set nombre = ?, masa = ?, demoledor = ?, rapido = ?, nino =?, normal =?,otro=? where tipo = 'vacuna'";
 
 
         try(Connection conn= this.getConnection();
