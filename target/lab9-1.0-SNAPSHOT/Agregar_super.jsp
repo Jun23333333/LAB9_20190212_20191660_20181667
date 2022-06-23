@@ -76,7 +76,7 @@
                                                type="number"
                                                id="peso"
                                                class="form-control"
-                                               placeholder="Ingrese su usuario"/>
+                                               placeholder="Ingrese su peso"/>
                                     </div>
                                     <div class="form-outline mb-4">
                                         <label class="form-label" for="fuerza">Fuerza</label>
