@@ -139,4 +139,33 @@ public class SupervivienteDao extends BaseDao{
             ex.printStackTrace();
         }
     }
+    public void actualizarPareja(String  idSuper, String idPareja) {
+        String sql = "update humano set idPareja = ? where idHumano=?";
+
+        try (Connection conn = this.getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(sql);) {
+
+            pstmt.setString(1, idPareja);
+            pstmt.setString(2, idSuper);
+            pstmt.executeUpdate();
+
+        } catch (SQLException ex) {
+            System.out.println("Hubo un error en la conexión obteneter actualizar!");
+            ex.printStackTrace();
+        }
+    }
+    public void borrarPareja(String  idSuper) {
+        String sql = "update humano set idPareja = null where idHumano=?";
+
+        try (Connection conn = this.getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(sql);) {
+
+            pstmt.setString(1, idSuper);
+            pstmt.executeUpdate();
+
+        } catch (SQLException ex) {
+            System.out.println("Hubo un error en la conexión obteneter actualizar!");
+            ex.printStackTrace();
+        }
+    }
 }

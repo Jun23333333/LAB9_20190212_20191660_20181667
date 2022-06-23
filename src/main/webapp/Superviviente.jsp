@@ -17,12 +17,12 @@
         </a>
 
         <ul class="nav nav-pills">
-            <li class="nav-item"><a href="#" class="nav-link ">Humanos</a></li>
-            <li class="nav-item"><a href="#" class="nav-link active" aria-current="page">Supervivientes</a></li>
-            <li class="nav-item"><a href="#" class="nav-link">Virus</a></li>
-            <li class="nav-item"><a href="#" class="nav-link">Zombies</a></li>
-            <li class="nav-item"><a href="#" class="nav-link">Objetos</a></li>
-            <li class="nav-item"><a href="#" class="nav-link">Cacería</a></li>
+            <li class="nav-item"><a href="<%=request.getContextPath()%>/HumanoServlet" class="nav-link " aria-current="page">Humanos</a></li>
+            <li class="nav-item"><a href="<%=request.getContextPath()%>/SupervivienteServlet" class="nav-link active" >Supervivientes</a></li>
+            <li class="nav-item"><a href="<%=request.getContextPath()%>/VirusServlet" class="nav-link ">Virus</a></li>
+            <li class="nav-item"><a href="<%=request.getContextPath()%>/ZombieServlet" class="nav-link">Zombies</a></li>
+            <li class="nav-item"><a href="<%=request.getContextPath()%>/ObjetoServlet" class="nav-link">Objetos</a></li>
+            <li class="nav-item"><a href="<%=request.getContextPath()%>/CaceriaServlet" class="nav-link">Cacería</a></li>
         </ul>
     </header>
 </div>
