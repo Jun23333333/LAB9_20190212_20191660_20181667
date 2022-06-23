@@ -14,13 +14,13 @@
             content="width=device-width, initial-scale=1.0, shrink-to-fit=no"
     />
     <title>Agregar variante</title>
-    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
             href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap"
             rel="stylesheet"
     />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
     <link rel="stylesheet" href="assets/css/estilos.css" />
     <script
             src="https://kit.fontawesome.com/5733880de3.js"
@@ -39,7 +39,7 @@
                             class="card-header"
                             style="background-color: #e72d4b; color: white"
                     >
-                        <h4 class="my-2">Registrar Virus</h4>
+                        <h2 class="my-2">Registrar Virus</h2>
                     </div>
                     <div class="card-body p-4 p-md-5">
                         <form method="POST" action="<%=request.getContextPath()%>/VirusServlet?action=crear">

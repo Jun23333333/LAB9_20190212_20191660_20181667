@@ -6,8 +6,29 @@ import Beans.ZombieBean;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.Random;
 
 public class ZombiesDao extends BaseDao{
+    public ArrayList<ZombieBean> listarSexo(){
+        ArrayList<ZombieBean> zombies = new ArrayList<>();
+        String sql = "select distinct sexo from humano where sexo is not null";
+
+        try (Connection conn = this.getConnection();
+             Statement stmt = conn.createStatement();
+             ResultSet resultSet = stmt.executeQuery(sql)) {
+            while (resultSet.next()) {
+                ZombieBean zombie = new ZombieBean();
+                zombie.setSexo(resultSet.getString(1));
+                zombies.add(zombie);
+            }
+
+
+        } catch (SQLException e) {
+            System.out.println("Hubo un error en la conexión!");
+            e.printStackTrace();
+        }
+        return zombies;
+    }
     public ArrayList<ZombieBean> listarZombie(){
         ArrayList<ZombieBean> zombies = new ArrayList<>();
         String sql = "select zo.idHumano, zo.tiempoInfectado, va.nombre, zo.numeroVictimas, zo.tipo from Humano zo\n" +
@@ -148,6 +169,7 @@ public class ZombiesDao extends BaseDao{
         return viruss;
     }
 
+
     public void agregarZombie(String id, int tiempo, int idV, String tipo, String sexo){
         if(!existeZombie(id)){
             String sql = "insert into Humano (idHumano,estado, tiempoInfectado, idVariante, tipo, numeroVictimas, sexo) values (?,'zombie',?,?,?,0,?)";
@@ -248,6 +270,36 @@ public class ZombiesDao extends BaseDao{
             e.printStackTrace();
         }
         return zombie;
+    }
+
+    public static String createAlphaNumericArrayStrings(int stringLength, int sizeOfStringArray) {
+        //defining the content of the string.
+        String allCharStringContains = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+                + "0123456789"
+                + "abcdefghijklmnopqrstuvxyz";
+        //.length() returns the total number of characters contained in the string
+        int maximum = allCharStringContains.length();
+        StringBuffer stringBufferObj;
+        //here array of a string is created with the size we sent as an argument.
+        String stringArray = new String();
+        //Creating the Random object;
+        Random randomObj = new Random();
+        //this for loop helps to generate a number of strings which we provided
+        //and stores that srings in array
+        for (int i = 0; i < sizeOfStringArray; i++) {
+            //creating new StringBuffer object for each string
+            stringBufferObj = new StringBuffer();
+            //creating a string from allCharStringContains
+            for (int j = 0; j < stringLength; j++) {
+                int createdRandomChar = randomObj.nextInt(maximum);
+                stringBufferObj.append(allCharStringContains.charAt(createdRandomChar));
+            }
+            //setting a created string into stringArray in index[i]
+            stringArray = stringBufferObj.toString();
+        }
+        //returning the Array of Strings object
+        return stringArray;
+
     }
 
 }
